@@ -1706,6 +1706,16 @@
                     });
                     return _0xResult;
                 }
+                function _0xF30(_0xD) {
+                    if (_0xD === undefined || _0xD === null || _0xD === '')
+                        return null;
+                    if (_0xD instanceof Date)
+                        return _0xD;
+                    var _0xN = new Date(_0xD);
+                    if (isNaN(_0xN.getTime()))
+                        return null;
+                    return _0xN;
+                }
                 function _0xF17() {
                     var _0xCanvas = _0xF01('#watermark-canvas');
                     if (!_0xCanvas) {
@@ -1743,9 +1753,6 @@
                 }
                 function _0xF19() {
                     _0xBF = true;
-                    try {
-                        localStorage.setItem('announce_ver', 'agreed_' + Date.now());
-                    } catch (e) {}
                     if (!_0xC0)
                         _0xC0 = _0xF01('#announcementModal');
                     if (!_0xC1)
@@ -1922,7 +1929,10 @@
                     var _0xId = (_0xM && _0xM.id) || (_0xC4[_0xC5] && _0xC4[_0xC5].id);
                     if (!_0xId)
                         return;
-                    _0xW.innerHTML = '<iframe src="https://music.163.com/outchain/player?type=2&id=' + encodeURIComponent(_0xId) + '" frameborder="0" allow="autoplay"></iframe>';
+                    var _0xType = (_0xM && _0xM.type !== undefined) ? _0xM.type : 0;
+                    var _0xAuto = (_0xM && _0xM.auto !== undefined) ? _0xM.auto : 0;
+                    var _0xHgt = (_0xM && _0xM.height !== undefined) ? _0xM.height : 430;
+                    _0xW.innerHTML = '<iframe src="https://music.163.com/outchain/player?type=' + encodeURIComponent(_0xType) + '&id=' + encodeURIComponent(_0xId) + '&auto=' + encodeURIComponent(_0xAuto) + '&height=' + encodeURIComponent(_0xHgt) + '" width="100%" height="450" frameborder="no" marginwidth="0" marginheight="0" allow="autoplay"></iframe>';
                     var _0xNN = _0xF01('#musicNowName');
                     if (_0xNN) {
                         _0xNN.innerHTML = (_0xM && _0xM.name) || (_0xC4[_0xC5] && _0xC4[_0xC5].name) || ('歌曲 #' + _0xId);
@@ -2134,10 +2144,10 @@
                           , _0xSortOrder = _0xF0C(_0xId);
                         if (_0xSortBy === "date") {
                             _0xList.sort(function(a, b) {
-                                var _0xDa = a.date ? new Date(a.date) : null
-                                  , _0xDb = b.date ? new Date(b.date) : null;
-                                _0xDa = _0xDa && !isNaN(_0xDa) ? _0xDa : new Date('1970-01-01T00:00:00Z');
-                                _0xDb = _0xDb && !isNaN(_0xDb) ? _0xDb : new Date('1970-01-01T00:00:00Z');
+                                var _0xDa = _0xF30(a.date)
+                                  , _0xDb = _0xF30(b.date);
+                                _0xDa = _0xDa instanceof Date && !isNaN(_0xDa.getTime()) ? _0xDa : new Date('1970-01-01T00:00:00Z');
+                                _0xDb = _0xDb instanceof Date && !isNaN(_0xDb.getTime()) ? _0xDb : new Date('1970-01-01T00:00:00Z');
                                 return _0xSortOrder === "desc" ? _0xDb - _0xDa : _0xDa - _0xDb;
                             });
                         }
