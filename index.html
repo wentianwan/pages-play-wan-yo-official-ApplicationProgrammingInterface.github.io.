@@ -842,41 +842,7 @@ color: var(--text-secondary);
 margin-bottom: 20px;
 line-height: 1.7;
 overflow-y: auto;
-flex: 1;
-padding-right: 4px
-}
-.announcement-body::-webkit-scrollbar {
-width: 4px
-}
-.announcement-body::-webkit-scrollbar-track {
-background: var(--border-light)
-}
-.announcement-body::-webkit-scrollbar-thumb {
-background: var(--border-heavy);
-border-radius: 2px
-}
-.announcement-progress {
-width: 100%;
-height: 4px;
-background: var(--border-light);
-border-radius: 2px;
-overflow: hidden;
-margin-bottom: 14px
-}
-.announcement-progress span {
-display: block;
-height: 100%;
-width: 0%;
-background: var(--primary);
-border-radius: 2px;
-transition: width .3s ease
-}
-.announcement-tip {
-font-size: 12px;
-text-align: center;
-min-height: 18px;
-line-height: 1.4;
-margin-bottom: 6px
+flex: 1
 }
 .announcement-footer {
 padding: 0 2px
@@ -967,20 +933,9 @@ transform: scale(1.05)
 .music-toggle:active {
 transform: scale(0.93)
 }
-.music-toggle.playing {
-animation: musicSpin 3s linear infinite
-}
-@keyframes musicSpin {
-from {
-transform: rotate(0deg)
-}
-to {
-transform: rotate(360deg)
-}
-}
 .music-frame {
-width: 320px;
-height: 520px;
+width: 300px;
+height: 470px;
 background: var(--bg);
 border-radius: var(--radius);
 box-shadow: 0 8px 32px rgba(0,0,0,0.14);
@@ -1021,96 +976,6 @@ transition: var(--transition-fast)
 .music-controls button:hover {
 background: var(--primary);
 color: #fff
-}
-.music-panel-tabs {
-display: flex;
-gap: 4px;
-margin-bottom: 8px;
-width: 100%
-}
-.music-panel-tabs button {
-flex: 1;
-height: 28px;
-border: 1px solid var(--border);
-background: var(--surface);
-color: var(--text-secondary);
-border-radius: 6px;
-font-size: 11px;
-cursor: pointer;
-font-family: inherit;
-transition: var(--transition-fast)
-}
-.music-panel-tabs button.active {
-background: var(--primary);
-color: #fff;
-border-color: var(--primary)
-}
-.music-list-panel {
-width: 320px;
-max-height: 200px;
-background: var(--bg);
-border-radius: var(--radius-sm);
-box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-border: 1px solid var(--border);
-overflow-y: auto;
-display: none;
-margin-bottom: 6px
-}
-.music-list-panel.show {
-display: block
-}
-.music-list-panel .music-list-item {
-padding: 10px 12px;
-font-size: 12px;
-cursor: pointer;
-border-bottom: 1px solid var(--border-light);
-display: flex;
-flex-direction: column;
-gap: 2px;
-transition: var(--transition-fast)
-}
-.music-list-panel .music-list-item:hover {
-background: var(--surface-hover)
-}
-.music-list-panel .music-list-item.active {
-background: var(--surface-hover);
-color: var(--primary);
-border-left: 3px solid var(--primary)
-}
-.music-list-panel .music-list-item .music-list-name {
-font-weight: 600;
-font-size: 13px
-}
-.music-list-panel .music-list-item .music-list-artist {
-color: var(--text-tertiary);
-font-size: 11px
-}
-.music-lyric-area {
-width: 320px;
-height: 80px;
-background: var(--surface);
-border-radius: var(--radius-sm);
-border: 1px solid var(--border);
-overflow-y: auto;
-display: none;
-padding: 8px 10px;
-font-size: 12px;
-color: var(--text-secondary);
-line-height: 1.8;
-text-align: center;
-margin-bottom: 6px
-}
-.music-lyric-area.show {
-display: block
-}
-.music-lyric-area .lyric-line {
-padding: 2px 0;
-transition: var(--transition-fast)
-}
-.music-lyric-area .lyric-line.active {
-color: var(--primary);
-font-weight: 600;
-font-size: 13px
 }
 .announcement-btn:disabled {
 background: var(--text-disabled);
@@ -1161,89 +1026,87 @@ opacity: 0.6
 <div class="announcement-header">
 <h3 id="announcementTitle">公告</h3>
 </div>
-<div class="announcement-progress"><span id="announcementProgress"></span></div>
-<div class="announcement-tip" id="announcementTip">请阅读详细条款</div>
 <div class="announcement-body" id="announcementBody">加载中…</div>
 <div class="announcement-footer">
-<button type="button" class="announcement-btn" id="announcementBtn" disabled>请阅读 6s</button>
+<button type="button" class="announcement-btn" id="announcementBtn">我阅读并同意以上条款内容</button>
 </div>
 </div>
 </div>
 <script>
 (function() {
 (function _0xAntiD() {
-document.addEventListener('contextmenu', function(_0xE1) {
-_0xE1.preventDefault();
+document.addEventListener('contextmenu', function(e) {
+e.preventDefault();
 return false;
 });
-document.addEventListener('keydown', function(_0xE2) {
-if (_0xE2.key === 'F12' || _0xE2.keyCode === 123) {
-_0xE2.preventDefault();
+document.addEventListener('keydown', function(e) {
+if (e.key === 'F12' || e.keyCode === 123) {
+e.preventDefault();
 return false;
 }
-if (_0xE2.ctrlKey && _0xE2.shiftKey && (_0xE2.key === 'I' || _0xE2.key === 'i' || _0xE2.keyCode === 73)) {
-_0xE2.preventDefault();
+if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) {
+e.preventDefault();
 return false;
 }
-if (_0xE2.ctrlKey && _0xE2.shiftKey && (_0xE2.key === 'J' || _0xE2.key === 'j' || _0xE2.keyCode === 74)) {
-_0xE2.preventDefault();
+if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) {
+e.preventDefault();
 return false;
 }
-if (_0xE2.ctrlKey && _0xE2.shiftKey && (_0xE2.key === 'C' || _0xE2.key === 'c' || _0xE2.keyCode === 67)) {
-_0xE2.preventDefault();
+if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67)) {
+e.preventDefault();
 return false;
 }
-if (_0xE2.ctrlKey && (_0xE2.key === 'U' || _0xE2.key === 'u' || _0xE2.keyCode === 85)) {
-_0xE2.preventDefault();
+if (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) {
+e.preventDefault();
 return false;
 }
-if (_0xE2.ctrlKey && (_0xE2.key === 'S' || _0xE2.key === 's' || _0xE2.keyCode === 83)) {
-_0xE2.preventDefault();
+if (e.ctrlKey && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) {
+e.preventDefault();
 return false;
 }
-if (_0xE2.ctrlKey && (_0xE2.key === 'P' || _0xE2.key === 'p' || _0xE2.keyCode === 80)) {
-_0xE2.preventDefault();
+if (e.ctrlKey && (e.key === 'P' || e.key === 'p' || e.keyCode === 80)) {
+e.preventDefault();
 return false;
 }
-if (_0xE2.ctrlKey && (_0xE2.key === 'A' || _0xE2.key === 'a' || _0xE2.keyCode === 65)) {
-_0xE2.preventDefault();
+if (e.ctrlKey && (e.key === 'A' || e.key === 'a' || e.keyCode === 65)) {
+e.preventDefault();
 return false;
 }
-if (_0xE2.ctrlKey && (_0xE2.key === 'C' || _0xE2.key === 'c' || _0xE2.keyCode === 67)) {
-_0xE2.preventDefault();
+if (e.ctrlKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67)) {
+e.preventDefault();
 return false;
 }
-if (_0xE2.ctrlKey && (_0xE2.key === 'V' || _0xE2.key === 'v' || _0xE2.keyCode === 86)) {
-_0xE2.preventDefault();
+if (e.ctrlKey && (e.key === 'V' || e.key === 'v' || e.keyCode === 86)) {
+e.preventDefault();
 return false;
 }
-if (_0xE2.ctrlKey && (_0xE2.key === 'X' || _0xE2.key === 'x' || _0xE2.keyCode === 88)) {
-_0xE2.preventDefault();
+if (e.ctrlKey && (e.key === 'X' || e.key === 'x' || e.keyCode === 88)) {
+e.preventDefault();
 return false;
 }
 });
-document.addEventListener('selectstart', function(_0xE3) {
-_0xE3.preventDefault();
+document.addEventListener('selectstart', function(e) {
+e.preventDefault();
 return false;
 });
-document.addEventListener('dragstart', function(_0xE4) {
-_0xE4.preventDefault();
+document.addEventListener('dragstart', function(e) {
+e.preventDefault();
 return false;
 });
-document.addEventListener('copy', function(_0xE5) {
-_0xE5.preventDefault();
+document.addEventListener('copy', function(e) {
+e.preventDefault();
 return false;
 });
-document.addEventListener('cut', function(_0xE6) {
-_0xE6.preventDefault();
+document.addEventListener('cut', function(e) {
+e.preventDefault();
 return false;
 });
-document.addEventListener('paste', function(_0xE7) {
-_0xE7.preventDefault();
+document.addEventListener('paste', function(e) {
+e.preventDefault();
 return false;
 });
-window.addEventListener('beforeprint', function(_0xE8) {
-_0xE8.preventDefault();
+window.addEventListener('beforeprint', function(e) {
+e.preventDefault();
 return false;
 });
 setInterval(function() {
@@ -1316,68 +1179,6 @@ var _0xBE = 0.8;
 var _0xBF = false;
 var _0xC0 = null;
 var _0xC1 = null;
-var _0xC2 = 0;
-var _0xC3 = '';
-var _0xC4 = false;
-var _0xC5 = 0;
-var _0xC6 = false;
-var _0xC7 = 0;
-var _0xC8 = 0;
-var _0xC9 = 0;
-var _0xCA = 0;
-var _0xCB = 0;
-var _0xCC = 0;
-var _0xCD = 0;
-var _0xCE = 0;
-var _0xCF = 0;
-var _0xD0 = null;
-var _0xD1 = null;
-var _0xD2 = null;
-var _0xD3 = null;
-var _0xD4 = null;
-var _0xD5 = null;
-var _0xD6 = null;
-var _0xD7 = null;
-var _0xD8 = null;
-var _0xD9 = null;
-var _0xDA = null;
-var _0xDB = null;
-var _0xDC = null;
-var _0xDD = null;
-var _0xDE = null;
-var _0xDF = null;
-var _0xE0 = null;
-var _0xE1 = null;
-var _0xE2 = null;
-var _0xE3 = null;
-var _0xE4 = null;
-var _0xE5 = null;
-var _0xE6 = null;
-var _0xE7 = null;
-var _0xE8 = null;
-var _0xE9 = null;
-var _0xEA = null;
-var _0xEB = null;
-var _0xEC = null;
-var _0xED = null;
-var _0xEE = null;
-var _0xEF = null;
-var _0xF0 = null;
-var _0xF1 = null;
-var _0xF2 = null;
-var _0xF3 = null;
-var _0xF4 = null;
-var _0xF5 = null;
-var _0xF6 = null;
-var _0xF7 = null;
-var _0xF8 = null;
-var _0xF9 = null;
-var _0xFA = null;
-var _0xFB = null;
-var _0xFC = null;
-var _0xFD = null;
-var _0xFE = null;
-var _0xFF = null;
 function _0xF01(_0xS, _0xP) {
 return (_0xP || document).querySelector(_0xS);
 }
@@ -1393,7 +1194,7 @@ function _0xF04() {
 try {
 localStorage.clear();
 sessionStorage.clear();
-} catch (_0xE1) {}
+} catch (e) {}
 setTimeout(function() {
 window.location.reload(true);
 }, 500);
@@ -1538,14 +1339,14 @@ if (_0xB1.opSearch.cardOnFound)
 _0xF15(_0xExact[0]);
 return _0xExact;
 }
-_0xF16(_0xSid, _0xQuery);
+renderNotFound(_0xSid, _0xQuery);
 return {
 __notFound: true
 };
 }
 var _0xResults = _0xF13(_0xSid, _0xQuery);
 if (_0xResults.length === 0) {
-_0xF16(_0xSid, _0xQuery);
+renderNotFound(_0xSid, _0xQuery);
 return {
 __notFound: true
 };
@@ -1562,14 +1363,18 @@ return _0xIt.id === _0xItem.id;
 if (_0xRealIdx >= 0)
 _0xF28(_0xB2, _0xRealIdx, _0xItem.id);
 }
-function _0xF16(_0xSid, _0xId) {
-var _0xArea = _0xF01('.content-area');
-var _0xHtml = '<div class="err">该信息未登记!<br>请前往www.TianBIN.org登记!!!</div>';
-_0xHtml += '<div style="text-align:center;margin-top:18px;display:flex;justify-content:center;gap:12px;">';
-_0xHtml += '<button type="button" data-action="back-search" style="padding:10px 22px;border-radius:10px;border:1.5px solid var(--primary);background:var(--bg);color:var(--primary);font-weight:600;cursor:pointer;">返回</button>';
-_0xHtml += '<a href="https://www.TianBIN.org" target="_blank" rel="noopener" style="padding:10px 22px;border-radius:10px;background:var(--primary);color:#fff;font-weight:600;text-decoration:none;display:inline-block;">登记</a>';
-_0xHtml += '</div>';
-_0xArea.innerHTML = _0xHtml;
+function _0xF16(_0xText, _0xQuery) {
+if (!_0xQuery)
+return _0xText;
+var _0xWords = _0xQuery.split(/\s+/).filter(function(w) {
+return w.length > 0;
+});
+var _0xResult = _0xText;
+_0xWords.forEach(function(w) {
+var _0xRegex = new RegExp(w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),'gi');
+_0xResult = _0xResult.replace(_0xRegex, '<mark>$&</mark>');
+});
+return _0xResult;
 }
 function _0xF17() {
 var _0xCanvas = _0xF01('#watermark-canvas');
@@ -1597,8 +1402,20 @@ _0xCtx.restore();
 }
 _0xCtx.globalAlpha = 1;
 }
-function _0xF18() {
+function renderNotFound(_0xSid, _0xId) {
+var _0xArea = _0xF01('.content-area');
+var _0xHtml = '<div class="err">该信息未登记!<br>请前往www.TianBIN.org登记!!!</div>';
+_0xHtml += '<div style="text-align:center;margin-top:18px;display:flex;justify-content:center;gap:12px;">';
+_0xHtml += '<button type="button" data-action="back-search" style="padding:10px 22px;border-radius:10px;border:1.5px solid var(--primary);background:var(--bg);color:var(--primary);font-weight:600;cursor:pointer;">返回</button>';
+_0xHtml += '<a href="https://www.TianBIN.org" target="_blank" rel="noopener" style="padding:10px 22px;border-radius:10px;background:var(--primary);color:#fff;font-weight:600;text-decoration:none;display:inline-block;">登记</a>';
+_0xHtml += '</div>';
+_0xArea.innerHTML = _0xHtml;
+}
+function _0xF19() {
 _0xBF = true;
+try {
+localStorage.setItem('announce_ver', 'agreed_' + Date.now());
+} catch (e) {}
 if (!_0xC0)
 _0xC0 = _0xF01('#announcementModal');
 if (!_0xC1)
@@ -1633,12 +1450,8 @@ if (el === _0xC1)
 return;
 el.parentNode && el.parentNode.removeChild(el);
 });
-_0xC4 = false;
-_0xC5 = 0;
-_0xC6 = false;
-_0xC7 = 0;
 }
-function _0xF19() {
+function _0xF1A() {
 if (_0xBF)
 return;
 var _0xAU = "https://api.TianBIN.org/index.json?_=" + Date.now();
@@ -1652,14 +1465,12 @@ headers: {
 return r.json();
 }).then(function(_0xData) {
 if (!_0xData.announcement || !_0xData.announcement.enabled) {
-_0xF18();
+_0xF19();
 return;
 }
 var _0xAnn = _0xData.announcement;
 var _0xTEl = _0xF01('#announcementTitle');
 var _0xBEl = _0xF01('#announcementBody');
-var _0xProgBar = _0xF01('#announcementProgress');
-var _0xTipEl = _0xF01('#announcementTip');
 if (_0xTEl)
 _0xTEl.textContent = _0xAnn.title || '公告';
 var _0xAnnImgHtml = '';
@@ -1675,95 +1486,32 @@ _0xAnnHtml += '<div style="margin-top:14px;">' + _0xAnn.html + '</div>';
 }
 if (_0xBEl)
 _0xBEl.innerHTML = _0xAnnImgHtml + '<div>' + _0xAnnHtml + '</div>';
-if (_0xProgBar)
-_0xProgBar.style.width = '0%';
-if (_0xTipEl) {
-_0xTipEl.textContent = '请阅读详细条款（滚动到底部）';
-_0xTipEl.style.color = '#ef4444';
-}
-_0xC4 = false;
-_0xC5 = 0;
-_0xC6 = false;
-_0xC7 = 0;
 var _0xBtn = _0xF01('#announcementBtn');
-var _0xCount = (_0xAnn.countdown && _0xAnn.countdown > 0) ? _0xAnn.countdown : 6;
-if (_0xBtn) {
+var _0xCount = _0xAnn.countdown && _0xAnn.countdown > 0 ? _0xAnn.countdown : 0;
+if (_0xBtn && _0xCount > 0) {
 _0xBtn.disabled = true;
-_0xBtn.textContent = '请阅读 ' + _0xCount + 's';
-_0xC7 = _0xCount;
-_0xC8 = setInterval(function() {
-_0xC7--;
-if (_0xC7 <= 0) {
-clearInterval(_0xC8);
-_0xC4 = true;
-if (_0xC6) {
+_0xBtn.textContent = '请阅读条款（' + _0xCount + 's）';
+var _0xTimer = setInterval(function() {
+_0xCount--;
+if (_0xCount <= 0) {
+clearInterval(_0xTimer);
 _0xBtn.disabled = false;
 _0xBtn.textContent = '我阅读并同意以上条款内容';
-if (_0xTipEl) {
-_0xTipEl.textContent = '✓ 可点击同意';
-_0xTipEl.style.color = '#22c55e';
-}
 } else {
-_0xBtn.textContent = '请滚动阅读完详细条款';
-if (_0xTipEl) {
-_0xTipEl.textContent = '⚠ 倒计时结束，但仍需滚动阅读完详细条款';
-_0xTipEl.style.color = '#eab308';
-}
-}
-} else {
-_0xBtn.textContent = '请阅读 ' + _0xC7 + 's';
+_0xBtn.textContent = '请阅读条款（' + _0xCount + 's）';
 }
 }, 1000);
 }
-if (_0xBEl) {
-_0xBEl.addEventListener('scroll', _0xF1A, { passive: true });
-}
 document.body.classList.add('announce-lock');
-if (!_0xC0)
-_0xC0 = _0xF01('#announcementModal');
-if (!_0xC1)
-_0xC1 = _0xF01('#announcementOverlay');
 if (_0xC0)
 _0xC0.classList.add('active');
 if (_0xC1)
 _0xC1.classList.add('show');
 }).catch(function() {
-_0xF18();
+_0xF19();
 }).finally(function() {
 _0xBB = true;
 });
-}
-function _0xF1A() {
-var _0xBEl = _0xF01('#announcementBody');
-var _0xProgBar = _0xF01('#announcementProgress');
-var _0xTipEl = _0xF01('#announcementTip');
-var _0xBtn = _0xF01('#announcementBtn');
-if (!_0xBEl || !_0xProgBar)
-return;
-var _0xScrolled = _0xBEl.scrollTop + _0xBEl.clientHeight;
-var _0xTotal = _0xBEl.scrollHeight;
-var _0xPct = 0;
-if (_0xTotal <= _0xBEl.clientHeight + 10) {
-_0xPct = 100;
-} else {
-_0xPct = Math.max(0, Math.min(100, Math.round((_0xBEl.scrollTop / (_0xTotal - _0xBEl.clientHeight)) * 100)));
-}
-_0xProgBar.style.width = _0xPct + '%';
-if (_0xScrolled >= _0xTotal - 20) {
-_0xC6 = true;
-if (_0xTipEl) {
-_0xTipEl.textContent = '✓ 已阅读完毕';
-_0xTipEl.style.color = '#22c55e';
-}
-if (_0xC4) {
-if (_0xBtn) {
-_0xBtn.disabled = false;
-_0xBtn.textContent = '我阅读并同意以上条款内容';
-}
-}
-} else {
-_0xC6 = false;
-}
 }
 function _0xF1B() {
 if (!_0xC0)
@@ -1773,15 +1521,7 @@ _0xC1 = _0xF01('#announcementOverlay');
 var _0xBtn = _0xF01('#announcementBtn');
 if (_0xBtn) {
 var _0xHdlr = function() {
-if (!_0xC4 || !_0xC6) {
-var _0xTipEl = _0xF01('#announcementTip');
-if (_0xTipEl) {
-_0xTipEl.textContent = '⚠ 必须阅读倒计时并滚动到底部才能同意';
-_0xTipEl.style.color = '#ef4444';
-}
-return;
-}
-_0xF18();
+_0xF19();
 };
 _0xBtn.addEventListener('click', _0xHdlr, false);
 _0xBtn.addEventListener('touchend', _0xHdlr, false);
@@ -1840,8 +1580,10 @@ _0xB9 = 0;
 document.title = j.siteName || '天彬TianBIN';
 _0xF17();
 setInterval(_0xF17, 150);
+_0xF2D();
+window.addEventListener('resize', _0xF17);
 _0xF1B();
-_0xF19();
+_0xF1A();
 var _0xParams = new URLSearchParams(location.search);
 var _0xHash = location.hash.slice(1).split('/');
 var _0xInitTab = _0xParams.get('tab') || _0xHash[0];
@@ -1862,11 +1604,10 @@ setTimeout(function() {
 _0xF28(_0xB2, _0xI, _0xFound.id);
 }, 400);
 } else
-_0xF16(_0xB2, _0xAnchor);
+renderNotFound(_0xB2, _0xAnchor);
 }
 });
 _0xF1C();
-_0xF2D();
 }).catch(function() {
 _0xB9++;
 var _0xArea = _0xF01('.content-area');
@@ -2010,7 +1751,7 @@ var _0xPs = _0xF10(_0xB2);
 var _0xList = _0xPs.filtered || _0xPs.list;
 if (!_0xList || _0xList.length === 0) {
 if (_0xF0F(_0xB2) && _0xB5.searchQuery && /^\d+$/.test(_0xB5.searchQuery)) {
-_0xF16(_0xB2, _0xB5.searchQuery);
+renderNotFound(_0xB2, _0xB5.searchQuery);
 return;
 }
 _0xF01('.content-area').innerHTML = '<div class="loading" style="color:var(--text-tertiary)">暂无内容</div>';
@@ -2042,7 +1783,7 @@ var _0xItem = _0xList[i];
 if (!_0xItem)
 continue;
 _0xHtml += '<div class="list-item" data-action="open" data-sid="' + _0xB2 + '" data-idx="' + i + '" data-id="' + (_0xItem.id || '') + '">';
-_0xHtml += '<div class="title">' + (_0xB5.searchQuery ? _0xF26(_0xItem.title || "", _0xB5.searchQuery) : (_0xItem.title || "")) + '</div>';
+_0xHtml += '<div class="title">' + (_0xB5.searchQuery ? _0xF16(_0xItem.title || "", _0xB5.searchQuery) : (_0xItem.title || "")) + '</div>';
 if (_0xIsOp) {
 _0xHtml += '<div class="meta">' + (_0xItem.date || '') + ' · ID:' + (_0xItem.id || "?") + ' · ' + (_0xItem.title || "") + '</div>';
 } else {
@@ -2060,18 +1801,54 @@ _0xArea.innerHTML = _0xHtml;
 if (_0xF0A(_0xB2))
 _0xF27();
 }
-function _0xF26(_0xText, _0xQuery) {
-if (!_0xQuery)
-return _0xText;
-var _0xWords = _0xQuery.split(/\s+/).filter(function(w) {
-return w.length > 0;
+function _0xF26() {
+if (!_0xF0A(_0xB2))
+return;
+var k = _0xF01('#secKey').value.trim();
+_0xB5.searchQuery = k;
+var _0xPs = _0xF10(_0xB2);
+if (!k) {
+_0xPs.filtered = null;
+_0xPs.page = 1;
+_0xF25();
+return;
+}
+if (_0xB1.opSearch && _0xB1.opSearch.enabled) {
+var _0xRes = _0xF14(_0xB2, k);
+if (_0xRes && _0xRes.__notFound) {
+return;
+}
+_0xPs.filtered = _0xRes;
+_0xPs.page = 1;
+_0xF25();
+if (/^\d+$/.test(k) && _0xF0F(_0xB2)) {
+var _0xL = _0xB4[_0xB2] || [];
+var _0xFound = _0xL.find(function(_0xIt) {
+return String(_0xIt.id) === k;
 });
-var _0xResult = _0xText;
-_0xWords.forEach(function(w) {
-var _0xRegex = new RegExp(w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),'gi');
-_0xResult = _0xResult.replace(_0xRegex, '<mark>$&</mark>');
-});
-return _0xResult;
+if (_0xFound) {
+var _0xI = _0xL.indexOf(_0xFound);
+if (_0xI >= 0)
+history.replaceState(null, null, "#" + _0xB2 + "/" + k);
+}
+}
+return;
+} else {
+var _0xMode = _0xF0E(_0xB2);
+if (_0xMode === "weighted")
+_0xPs.filtered = _0xF12(_0xB2, k);
+else
+_0xPs.filtered = _0xF13(_0xB2, k);
+_0xPs.page = 1;
+_0xF25();
+}
+var _0xKey = 'searchHist_' + _0xB2;
+var _0xHist = JSON.parse(sessionStorage.getItem(_0xKey) || '[]');
+if (k && _0xHist.indexOf(k) < 0) {
+_0xHist.unshift(k);
+_0xHist = _0xHist.slice(0, 5);
+sessionStorage.setItem(_0xKey, JSON.stringify(_0xHist));
+}
 }
 function _0xF27() {
 var _0xKey = 'searchHist_' + _0xB2;
@@ -2095,6 +1872,8 @@ if (_0xSk)
 _0xSk.value = _0xB5.searchQuery;
 }
 }
+var _0xC2 = 0;
+var _0xC3 = '';
 function _0xF28(_0xSid, _0xIdx, _0xRealId) {
 var _0xList = _0xB4[_0xSid] || [];
 var _0xItem;
@@ -2197,6 +1976,67 @@ if (_0xB)
 _0xB.innerHTML = '';
 }
 }
+function _0xF2D() {
+if (!_0xB1.music || !_0xB1.music.enabled) return;
+var _0xList = _0xB1.music.list || [];
+if (_0xList.length === 0) return;
+var _0xIdx = 0;
+var _0xFrame = _0xF01('#musicFrame');
+var _0xToggle = _0xF01('#musicToggle');
+var _0xCtrl = _0xF01('#musicControls');
+var _0xHideTimer = null;
+function _0xRender() {
+var s = _0xList[_0xIdx];
+if (!s) return;
+var id = s.id || s.songid || s.songId || '';
+var url = '';
+if (id) {
+url = 'http://music.163.com/outchain/player?type=2&id=' + id + '&auto=1&height=430';
+} else if (s.url) {
+url = s.url;
+}
+_0xFrame.innerHTML = '<iframe src="' + url + '" width="100%" height="430" frameborder="no" marginwidth="0" marginheight="0"></iframe>';
+}
+_0xToggle.addEventListener('click', function() {
+if (_0xFrame.classList.contains('show')) {
+_0xFrame.classList.remove('show');
+_0xCtrl.classList.remove('show');
+} else {
+_0xRender();
+_0xFrame.classList.add('show');
+_0xCtrl.classList.add('show');
+}
+});
+_0xToggle.addEventListener('mouseenter', function() {
+clearTimeout(_0xHideTimer);
+_0xFrame.classList.add('show');
+_0xCtrl.classList.add('show');
+});
+_0xToggle.addEventListener('mouseleave', function() {
+_0xHideTimer = setTimeout(function() {
+_0xFrame.classList.remove('show');
+_0xCtrl.classList.remove('show');
+}, 600);
+});
+_0xFrame.addEventListener('mouseenter', function() {
+clearTimeout(_0xHideTimer);
+});
+_0xFrame.addEventListener('mouseleave', function() {
+_0xHideTimer = setTimeout(function() {
+_0xFrame.classList.remove('show');
+_0xCtrl.classList.remove('show');
+}, 600);
+});
+_0xF01('#prevSong').addEventListener('click', function() {
+_0xIdx = (_0xIdx - 1 + _0xList.length) % _0xList.length;
+_0xRender();
+});
+_0xF01('#nextSong').addEventListener('click', function() {
+_0xIdx = (_0xIdx + 1) % _0xList.length;
+_0xRender();
+});
+_0xRender();
+}
 function _0xF2C() {
 var _0xIframe = _0xF01('#subIframe');
 if (!_0xIframe)
@@ -2211,207 +2051,6 @@ _0xIframe.src = _0xSrc + (_0xSrc.indexOf('?') >= 0 ? '&' : '?') + '_=' + Date.no
 }, 50);
 }
 }
-function _0xF2D() {
-if (!_0xB1.music || !_0xB1.music.enabled)
-return;
-var _0xMusicConf = _0xB1.music;
-var _0xSingleList = _0xMusicConf.singleList || _0xMusicConf.list || [];
-var _0xPlaylistList = _0xMusicConf.playlistList || [];
-var _0xMode = 'single';
-var _0xIdx = 0;
-var _0xFrame = _0xF01('#musicFrame');
-var _0xToggle = _0xF01('#musicToggle');
-var _0xCtrl = _0xF01('#musicControls');
-var _0xListPanel = _0xF01('#musicListPanel');
-var _0xLyricArea = _0xF01('#musicLyricArea');
-var _0xHideTimer = null;
-function _0xRenderMusic() {
-if (_0xMode === 'single') {
-if (_0xSingleList.length === 0)
-return;
-var s = _0xSingleList[_0xIdx];
-var id = s.id || s.songid || s.songId || '';
-var url = '';
-if (id) {
-url = 'http://music.163.com/outchain/player?type=2&id=' + id + '&auto=0&height=66';
-} else if (s.url) {
-url = s.url;
-}
-_0xFrame.innerHTML = '<iframe src="' + url + '" width="100%" height="86" frameborder="no" border="0" marginwidth="0" marginheight="0"></iframe>';
-} else {
-if (_0xPlaylistList.length === 0)
-return;
-var p = _0xPlaylistList[_0xIdx];
-var pid = p.id || p.playlistId || p.playlistid || '';
-var url = '';
-if (pid) {
-url = 'http://music.163.com/outchain/player?type=0&id=' + pid + '&auto=0&height=430';
-} else if (p.url) {
-url = p.url;
-}
-_0xFrame.innerHTML = '<iframe src="' + url + '" width="100%" height="450" frameborder="no" border="0" marginwidth="0" marginheight="0"></iframe>';
-}
-}
-function _0xRenderList() {
-if (!_0xListPanel)
-return;
-var html = '';
-if (_0xMode === 'single') {
-_0xSingleList.forEach(function(s, i) {
-html += '<div class="music-list-item' + (i === _0xIdx ? ' active' : '') + '" data-midx="' + i + '">';
-html += '<div class="music-list-name">' + (s.name || '未知歌曲') + '</div>';
-html += '<div class="music-list-artist">' + (s.artist || '') + '</div>';
-html += '</div>';
-});
-} else {
-_0xPlaylistList.forEach(function(p, i) {
-html += '<div class="music-list-item' + (i === _0xIdx ? ' active' : '') + '" data-midx="' + i + '">';
-html += '<div class="music-list-name">' + (p.name || '未知歌单') + '</div>';
-html += '<div class="music-list-artist">' + (p.creator || '') + '</div>';
-html += '</div>';
-});
-}
-_0xListPanel.innerHTML = html;
-_0xF02('.music-list-item', _0xListPanel).forEach(function(el) {
-el.addEventListener('click', function() {
-_0xIdx = parseInt(this.dataset.midx);
-_0xRenderMusic();
-_0xRenderList();
-});
-});
-}
-_0xToggle.addEventListener('click', function() {
-if (_0xFrame.classList.contains('show')) {
-_0xFrame.classList.remove('show');
-_0xCtrl.classList.remove('show');
-_0xListPanel.classList.remove('show');
-_0xLyricArea.classList.remove('show');
-_0xToggle.classList.remove('playing');
-} else {
-_0xRenderMusic();
-_0xFrame.classList.add('show');
-_0xCtrl.classList.add('show');
-_0xListPanel.classList.add('show');
-_0xLyricArea.classList.add('show');
-_0xToggle.classList.add('playing');
-}
-});
-_0xToggle.addEventListener('mouseenter', function() {
-clearTimeout(_0xHideTimer);
-_0xFrame.classList.add('show');
-_0xCtrl.classList.add('show');
-_0xListPanel.classList.add('show');
-});
-_0xToggle.addEventListener('mouseleave', function() {
-_0xHideTimer = setTimeout(function() {
-_0xFrame.classList.remove('show');
-_0xCtrl.classList.remove('show');
-_0xListPanel.classList.remove('show');
-}, 600);
-});
-_0xFrame.addEventListener('mouseenter', function() {
-clearTimeout(_0xHideTimer);
-});
-_0xFrame.addEventListener('mouseleave', function() {
-_0xHideTimer = setTimeout(function() {
-_0xFrame.classList.remove('show');
-_0xCtrl.classList.remove('show');
-_0xListPanel.classList.remove('show');
-}, 600);
-});
-var _0xTabSingle = _0xF01('#musicTabSingle');
-var _0xTabPlaylist = _0xF01('#musicTabPlaylist');
-if (_0xTabSingle) {
-_0xTabSingle.addEventListener('click', function() {
-_0xMode = 'single';
-_0xIdx = 0;
-_0xTabSingle.classList.add('active');
-if (_0xTabPlaylist)
-_0xTabPlaylist.classList.remove('active');
-_0xRenderMusic();
-_0xRenderList();
-});
-}
-if (_0xTabPlaylist) {
-_0xTabPlaylist.addEventListener('click', function() {
-_0xMode = 'playlist';
-_0xIdx = 0;
-_0xTabPlaylist.classList.add('active');
-if (_0xTabSingle)
-_0xTabSingle.classList.remove('active');
-_0xRenderMusic();
-_0xRenderList();
-});
-}
-_0xF01('#prevSong').addEventListener('click', function() {
-var list = _0xMode === 'single' ? _0xSingleList : _0xPlaylistList;
-if (list.length === 0)
-return;
-_0xIdx = (_0xIdx - 1 + list.length) % list.length;
-_0xRenderMusic();
-_0xRenderList();
-});
-_0xF01('#nextSong').addEventListener('click', function() {
-var list = _0xMode === 'single' ? _0xSingleList : _0xPlaylistList;
-if (list.length === 0)
-return;
-_0xIdx = (_0xIdx + 1) % list.length;
-_0xRenderMusic();
-_0xRenderList();
-});
-_0xRenderMusic();
-_0xRenderList();
-}
-function _0xF2E() {
-var _0xKey = _0xF01('#secKey');
-if (!_0xKey)
-return;
-var k = _0xKey.value.trim();
-_0xB5.searchQuery = k;
-var _0xPs = _0xF10(_0xB2);
-if (!k) {
-_0xPs.filtered = null;
-_0xPs.page = 1;
-_0xF25();
-return;
-}
-if (_0xB1.opSearch && _0xB1.opSearch.enabled) {
-var _0xRes = _0xF14(_0xB2, k);
-if (_0xRes && _0xRes.__notFound) {
-return;
-}
-_0xPs.filtered = _0xRes;
-_0xPs.page = 1;
-_0xF25();
-if (/^\d+$/.test(k) && _0xF0F(_0xB2)) {
-var _0xL = _0xB4[_0xB2] || [];
-var _0xFound = _0xL.find(function(_0xIt) {
-return String(_0xIt.id) === k;
-});
-if (_0xFound) {
-var _0xI = _0xL.indexOf(_0xFound);
-if (_0xI >= 0)
-history.replaceState(null, null, "#" + _0xB2 + "/" + k);
-}
-}
-return;
-} else {
-var _0xMode = _0xF0E(_0xB2);
-if (_0xMode === "weighted")
-_0xPs.filtered = _0xF12(_0xB2, k);
-else
-_0xPs.filtered = _0xF13(_0xB2, k);
-_0xPs.page = 1;
-_0xF25();
-}
-var _0xKey2 = 'searchHist_' + _0xB2;
-var _0xHist = JSON.parse(sessionStorage.getItem(_0xKey2) || '[]');
-if (k && _0xHist.indexOf(k) < 0) {
-_0xHist.unshift(k);
-_0xHist = _0xHist.slice(0, 5);
-sessionStorage.setItem(_0xKey2, JSON.stringify(_0xHist));
-}
-}
 document.addEventListener('click', function(e) {
 var _0xTarget = e.target;
 var _0xActEl = _0xTarget.closest('[data-action]');
@@ -2423,7 +2062,7 @@ case 'open':
 _0xF28(_0xActEl.dataset.sid, Number(_0xActEl.dataset.idx), _0xActEl.dataset.id);
 break;
 case 'search':
-_0xF2E();
+_0xF26();
 break;
 case 'prev':
 var _0xPs1 = _0xF10(_0xB2);
@@ -2460,7 +2099,7 @@ _0xF2C();
 break;
 case 'history':
 _0xF01('#secKey').value = _0xActEl.dataset.q;
-_0xF2E();
+_0xF26();
 break;
 case 'back-search':
 _0xB5.searchQuery = "";
@@ -2520,7 +2159,7 @@ _0xF2B('.img-modal');
 });
 setTimeout(function() {
 if (!_0xBF) {
-_0xF18();
+_0xF19();
 }
 }, 88888);
 });
@@ -2531,7 +2170,7 @@ e.preventDefault();
 }
 if (e.key === 'Escape') {
 if (_0xBF === false && _0xF01('#announcementModal') && _0xF01('#announcementModal').classList.contains('active')) {
-_0xF18();
+_0xF19();
 return;
 }
 _0xF02('.modal.active,.html-modal.active,.img-modal.active').forEach(function(el) {
@@ -2549,14 +2188,6 @@ _0xF1D();
 )();
 </script>
 <div class="music-player">
-<div class="music-panel-tabs" id="musicPanelTabs">
-<button type="button" class="active" id="musicTabSingle">单曲</button>
-<button type="button" id="musicTabPlaylist">歌单</button>
-</div>
-<div class="music-list-panel" id="musicListPanel"></div>
-<div class="music-lyric-area" id="musicLyricArea">
-<div class="lyric-line">暂无歌词</div>
-</div>
 <div class="music-frame" id="musicFrame"></div>
 <button type="button" class="music-toggle" id="musicToggle">🎵</button>
 <div class="music-controls" id="musicControls"><button type="button" id="prevSong">◀</button><button type="button" id="nextSong">▶</button></div>
