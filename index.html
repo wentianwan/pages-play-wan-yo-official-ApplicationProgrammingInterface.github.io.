@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>天彬TianBIN | 框架设定官网</title>
-<meta name="description" content="志创旷世神作，玄幻科幻并峙，策略养成，二次元为皮。构思已备，恨无资斧践行。框架设定，并陈未铸。空怀奇想，怅望星河，惟叹奈何。剑鸣匣中谁识，待伯乐携金共铸，以竟此界。版权所有:苏天彬,本名李文飞,字天彬">
+<meta name="description" content="不忘初心，逐梦未来。志创旷世神作，玄幻科幻并峙，策略养成，二次元为皮。构思已备，恨无资斧践行。框架设定，并陈未铸。空怀奇想，怅望星河，惟叹奈何。剑鸣匣中谁识，待伯乐携金共铸，以竟此界。版权所有:苏天彬,本名李文飞,字天彬">
 <meta name="keywords" content="天彬,TianBIN,天彬TianBIN,不忘初心,逐梦未来,世界观,框架,设定,玄幻,科幻,二次元,游戏,小说,版权,李文飞,苏天彬">
 <meta name="theme-color" content="#ffffff">
 <style>
@@ -1102,8 +1102,8 @@ document.onselectstart = function() { return false; };
 document.oncontextmenu = function() { return false; };
 }
 blockDevTools();
-var configApi = '//api.tianbin.org/api/index.json';
-var announceApi = '//api.tianbin.org/index.json';
+var configApi = 'https://api.tianbin.org/api/index.json';
+var announceApi = 'https://api.tianbin.org/index.json';
 var globalConfig = {};
 var sectionData = {};
 var currentSectionId = '';
@@ -1592,7 +1592,7 @@ if (!globalConfig.sections) return;
 Object.keys(globalConfig.sections).forEach(function(s) {
 if (s === currentSectionId) return;
 queueRequest(function() {
-return fetchWithTimeout((globalConfig.apiBase || '//api.tianbin.org/api/') + globalConfig.sections[s].api + "?_=" + Date.now()).then(function(r) { return r.json(); }).then(function(j) { sectionData[s] = j; }).catch(function() {});
+return fetchWithTimeout((globalConfig.apiBase || 'https://api.tianbin.org/api/') + globalConfig.sections[s].api + "?_=" + Date.now()).then(function(r) { return r.json(); }).then(function(j) { sectionData[s] = j; }).catch(function() {});
 }, priorityLevels.LOW).catch(function() {});
 });
 }
@@ -1685,7 +1685,7 @@ var area = $('.content-area');
 if (sectionData[tabId]) { renderList(tabId); return Promise.resolve(); }
 area.innerHTML = '<div class="loading">拉取加载数据中...<span class="loading-sub">(' + retryCount + '/3)</span><div class="loading-bar"></div></div>';
 return queueRequest(function() {
-return fetchWithTimeout((globalConfig.apiBase || '//api.tianbin.org/api/') + globalConfig.sections[tabId].api + "?_=" + Date.now()).then(function(r) {
+return fetchWithTimeout((globalConfig.apiBase || 'https://api.tianbin.org/api/') + globalConfig.sections[tabId].api + "?_=" + Date.now()).then(function(r) {
 if (!r.ok) throw new Error("data load failed " + r.status);
 return r.json();
 }).then(function(j) {
