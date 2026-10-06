@@ -536,7 +536,8 @@ justify-content: center;
 opacity: 0;
 visibility: hidden;
 transition: var(--transition);
-backdrop-filter: blur(8px)
+backdrop-filter: blur(8px);
+cursor: pointer
 }
 .img-modal.active {
 opacity: 1;
@@ -548,7 +549,8 @@ width: 100%;
 height: 100%;
 display: flex;
 align-items: center;
-justify-content: center
+justify-content: center;
+pointer-events: none
 }
 .img-modal .img-container img {
 max-width: 100vw;
@@ -559,7 +561,8 @@ object-fit: contain;
 display: block;
 user-select: none;
 -webkit-user-drag: none;
-cursor: zoom-out
+cursor: zoom-out;
+pointer-events: auto
 }
 .img-modal .img-watermark {
 position: absolute;
