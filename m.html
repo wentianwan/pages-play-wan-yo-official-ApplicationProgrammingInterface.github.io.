@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>文章、资源站、日记</title>
+<meta name="description" content="文章、资源站、日记">
+<link rel="shortcut icon" href="https://wentianwan.com/favicon.ico" type="image/x-icon">
+<style>
+*,::before,::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent!important;-webkit-touch-callout:none!important;-webkit-user-select:none!important;-khtml-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;outline:none!important;box-shadow:none!important;border-color:transparent!important}
+button,button:focus,button:active,a,a:focus,a:active,img,img:focus,img:active,div,h1,h2,h3,h4,h5,h6,p,span{outline:none!important;-webkit-tap-highlight-color:transparent!important;-webkit-focus-ring-color:transparent!important;box-shadow:none!important;border-color:transparent!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:#f0f2f5;color:#333;height:100vh;overflow:hidden}
+img{max-width:100%;display:block}
+#app{height:100%;display:flex;flex-direction:column}
+.pc-layout{display:flex;height:100%}
+.pc-sidebar{width:180px;background:#1a2332;color:#fff;padding:20px 0;flex-shrink:0}
+.pc-sidebar .logo{padding:0 20px 20px;font-size:20px;font-weight:700;border-bottom:1px solid #2a3548;margin-bottom:20px}
+.pc-nav button{display:block;width:100%;padding:14px 20px;text-align:left;background:none;border:none;color:#a0aec0;font-size:15px;cursor:pointer;border-left:3px solid transparent;transition:all .2s}
+.pc-nav button:hover,.pc-nav button.active{background:#2a3548;color:#fff;border-left-color:#4a9eff}
+.main-content{flex:1;overflow:hidden;display:flex;flex-direction:column}
+.mobile-header{display:none;background:#1a2332;color:#fff;padding:15px;text-align:center;font-size:18px;font-weight:700}
+.content-area{flex:1;overflow-y:auto;padding:20px}
+.list-item{background:#fff;border-radius:6px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.08);cursor:pointer;transition:all .2s}
+.list-item:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.list-item .title{font-size:16px;font-weight:600;margin-bottom:6px}
+.list-item .meta{font-size:13px;color:#718096}
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:56px;background:#fff;border-top:1px solid #e2e8f0;z-index:100}
+.mobile-nav button{flex:1;background:none;border:none;height:100%;font-size:12px;color:#718096;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.mobile-nav button.active{color:#4a9eff}
+.mobile-nav button span{font-size:18px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .25s ease}
+.modal.active{opacity:1;visibility:visible}
+.modal-box{background:#fff;width:90%;max-width:680px;max-height:85vh;border-radius:8px;display:flex;flex-direction:column;transform:scale(.95);transition:transform .25s ease;overflow:hidden}
+.modal.active .modal-box{transform:scale(1)}
+.modal-header{padding:16px 20px;border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.modal-header h3{font-size:18px;color:#333}
+.modal-close{background:none;border:none;font-size:28px;cursor:pointer;color:#999;line-height:1;padding:4px 10px;border-radius:4px;display:flex;align-items:center;justify-content:center;pointer-events:auto!important;z-index:9999;position:relative}
+.modal-close:hover{color:#333;background:#f5f5f5}
+.modal-body{padding:20px;overflow-y:auto;flex:1}
+.modal-body .text{white-space:pre-line;line-height:1.8;margin-bottom:20px;color:#333}
+.img-grid{display:flex;flex-direction:column;gap:8px;padding-bottom:8px}
+.img-grid img{border-radius:4px;width:100%;object-fit:cover;cursor:pointer;display:block}
+.html-modal{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .25s ease}
+.html-modal.active{opacity:1;visibility:visible}
+.html-modal-box{background:#fff;width:92vw;max-width:900px;height:85vh;max-height:85vh;border-radius:8px;display:flex;flex-direction:column;transform:scale(.95);transition:transform .25s ease;overflow:hidden}
+.html-modal.active .html-modal-box{transform:scale(1)}
+.html-modal-header{padding:16px 20px;border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.html-modal-header h3{font-size:18px;color:#333}
+.html-modal-close{background:none;border:none;font-size:28px;cursor:pointer;color:#999;line-height:1;padding:4px 10px;border-radius:4px;display:flex;align-items:center;justify-content:center;pointer-events:auto!important;z-index:9999;position:relative}
+.html-modal-close:hover{color:#333;background:#f5f5f5}
+.html-modal-body{flex:1;overflow:auto;padding:0;position:relative;background:#fff}
+.html-modal-body *{-webkit-user-select:text!important;-khtml-user-select:text!important;-moz-user-select:text!important;-ms-user-select:text!important;user-select:text!important}
+.html-modal-body iframe{width:100%;height:100%;border:none;display:block;min-height:100%}
+.html-reload-btn{display:inline-block;margin-left:8px;padding:6px 14px;background:#f0f0f0;color:#555;font-size:13px;border:none;border-radius:4px;cursor:pointer;vertical-align:middle;pointer-events:auto!important;z-index:9999;position:relative}
+.html-reload-btn:hover{background:#e0e0e0}
+.show-html-btn{display:block!important;margin:16px auto!important;padding:12px 0;width:33.333%;min-width:140px;max-width:240px;background:#4a9eff;color:#fff!important;border:none;border-radius:6px;font-size:16px;font-weight:600;cursor:pointer;text-align:center;position:relative;z-index:9999;pointer-events:auto!important;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.show-html-btn:hover{background:#3a8eef}
+.show-html-btn:active{background:#2a7edf;transform:scale(.98)}
+.img-modal{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:400;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .2s}
+.img-modal.active{opacity:1;visibility:visible}
+.img-modal img{max-width:95%;max-height:95%;object-fit:contain;cursor:pointer;display:block}
+.loading{padding:40px;text-align:center;color:#999}
+.loading-sub{display:inline-block;margin-left:6px;color:#4a9eff;font-size:13px}
+.pager{display:flex;justify-content:center;align-items:center;gap:10px;padding:15px;white-space:nowrap}
+.pager button{padding:10px 20px;border:none;background:#4a9eff;color:#fff;border-radius:4px;cursor:pointer;font-size:14px}
+.pager button:disabled{background:#ccc;cursor:not-allowed}
+.pager button:hover:not(:disabled){background:#3a8eef}
+.yo-search{display:flex;gap:10px;margin-bottom:15px}
+.yo-search input{flex:1;padding:10px 14px;border:1px solid #ddd;border-radius:4px;font-size:14px;-webkit-user-select:text;user-select:text}
+.yo-search input:focus{border-color:#4a9eff;outline:none}
+.yo-search button{padding:10px 24px;background:#4a9eff;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:14px}
+@media(max-width:768px){
+.pc-sidebar,.pc-header{display:none}
+.mobile-header,.mobile-nav{display:flex}
+.content-area{padding:15px 15px 70px}
+.modal-box{width:95%;max-height:80vh}
+.html-modal-box{width:95%;height:80vh}
+.img-grid{width:100%}
+.show-html-btn{width:60%!important;font-size:15px}
+}
+.err{text-align:center;color:#e53e3e;font-weight:bold;padding:30px 15px;line-height:1.8}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="pc-layout">
+    <div class="pc-sidebar">
+      <div class="logo">资源站、文章、日记</div>
+      <div class="pc-nav"></div>
+    </div>
+    <div class="main-content">
+      <div class="mobile-header"></div>
+      <div class="content-area"></div>
+    </div>
+  </div>
+  <div class="mobile-nav"></div>
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalTitle"></h3>
+        <button type="button" class="modal-close" id="modalCloseBtn" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+  <div class="html-modal" id="htmlModal">
+    <div class="html-modal-box">
+      <div class="html-modal-header">
+        <h3 id="htmlModalTitle">立即阅读</h3>
+        <button type="button" class="html-modal-close" id="htmlModalCloseBtn" aria-label="关闭">×</button>
+      </div>
+      <div class="html-modal-body" id="htmlModalBody"></div>
+    </div>
+  </div>
+  <div class="img-modal" id="imgModal">
+    <img id="imgModalImg" src="" alt="">
+  </div>
+</div>
+<script>
+'use strict';
+var cfg = {};
+var data = {};
+var cur = "bi_choiceblossomsfromthegroveofpens";
+var yoPage = 1;
+var yoTotal = 1;
+var yoCache = [];
+var retryCount = 0;
+var htmlRetryCount = 0;
+var htmlRetryTimer = null;
+var htmlCurrentIdx = -1;
+var currentRawHtml = '';
+var refreshCount = parseInt(sessionStorage.getItem('refreshCount') || '0');
+sessionStorage.setItem('refreshCount', refreshCount + 1);
+if (refreshCount >= 3) {
+  try { caches.keys().then(function(names){ names.forEach(function(n){ caches.delete(n); }); }); } catch(e){}
+  localStorage.clear();
+  sessionStorage.clear();
+  sessionStorage.setItem('refreshCount', '1');
+}
+window.addEventListener('beforeunload', function() {
+  try {
+    var navEntries = performance.getEntriesByType("navigation");
+    if (!navEntries[0] || navEntries[0].type !== 'reload') {
+      caches.keys().then(function(names){ names.forEach(function(n){ caches.delete(n); }); });
+      localStorage.clear();
+      sessionStorage.clear();
+    }
+  } catch(e) {}
+});
+function ban(e) { e.preventDefault(); return false; }
+document.addEventListener("contextmenu", ban);
+document.addEventListener("selectstart", ban);
+document.addEventListener("copy", ban);
+document.addEventListener("cut", ban);
+document.addEventListener("dragstart", ban);
+document.addEventListener("keydown", function(e) {
+  var k = e.key;
+  if (k === "F12" ||
+      (e.ctrlKey && e.shiftKey && (k === "I" || k === "C")) ||
+      (e.ctrlKey && (k === "J" || k === "U" || k === "S" || k === "P" || k === "s" || k === "u" || k === "p" || k === "a" || k === "A")) ||
+      (e.ctrlKey && e.metaKey) ||
+      (e.altKey && k === "F4")) {
+    ban(e); return false;
+  }
+});
+Object.defineProperty(document, "hidden", { get: function() { return false; } });
+setInterval(function() {
+  if (window.outerHeight - document.documentElement.clientHeight > 150 ||
+      window.outerWidth - document.documentElement.clientWidth > 150) {
+    window.location.href = "http://www.tianbin.net";
+  }
+}, 2000);
+setInterval(function() {
+  try { console.clear(); Object.defineProperty(console, "log", { value: function(){} }); } catch(e) {}
+}, 500);
+try { new Function("debugger")(); } catch(e) {}
+setInterval(function() {
+  try { if (window.devtools && window.devtools.open) { window.location.href = "http://www.tianbin.net"; } } catch(e) {}
+}, 1000);
+function fetchWithTimeout(url, timeout) {
+  timeout = timeout || 8000;
+  return Promise.race([
+    fetch(url, { cache: "no-store" }),
+    new Promise(function(_, rej) { setTimeout(function() { rej(new Error('timeout')); }, timeout); })
+  ]);
+}
+function loadConfig() {
+  fetchWithTimeout("https://api.tianbin.org/api/bi.json?t=" + Date.now(), 8000)
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      cfg = j;
+      document.title = (j.siteName || "资源站、文章、日记");
+      renderNav();
+      var hash = location.hash.slice(1);
+      if (hash && cfg.sections && cfg.sections.some(function(s) { return s.id === hash; })) {
+        cur = hash;
+      }
+      updateActive();
+      loadData(cur);
+      preloadAll();
+    })
+    .catch(function(err) {
+      console.error('加载配置失败:', err);
+      retryCount++;
+      var area = document.querySelector(".content-area");
+      if (area) area.innerHTML = '<div class="loading">加载失败，正在重试… <span class="loading-sub">(' + retryCount + '/3)</span></div>';
+      if (retryCount >= 3) {
+        setTimeout(function() { location.reload(); }, 2000);
+      } else {
+        setTimeout(loadConfig, 1500);
+      }
+    });
+}
+function preloadAll() {
+  if (!cfg.sections) return;
+  cfg.sections.forEach(function(s) {
+    if (s.id === 'bi_occasionalrecordsoftheinkplough') {
+      fetchWithTimeout("https://api.tianbin.org/api/bi_occasionalrecordsoftheinkplough.json?t=" + Date.now())
+        .then(function(r) { return r.json(); })
+        .then(function(j) {
+          yoCache = j;
+          yoCache.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+          if (cur === 'bi_occasionalrecordsoftheinkplough') renderYoList();
+        })
+        .catch(function() {});
+    } else {
+      fetchWithTimeout("https://api.tianbin.org/api/" + s.id + ".json?t=" + Date.now())
+        .then(function(r) { return r.json(); })
+        .then(function(j) {
+          data[s.id] = j;
+          if (cur === s.id) renderList(j);
+        })
+        .catch(function() {});
+    }
+  });
+}
+function renderNav() {
+  if (!cfg.sections) return;
+  var pcNav = document.querySelector(".pc-nav");
+  pcNav.innerHTML = cfg.sections.map(function(s) {
+    return '<button data-id="' + s.id + '">' + s.name + '</button>';
+  }).join("");
+  var mbNav = document.querySelector(".mobile-nav");
+  mbNav.innerHTML = cfg.sections.map(function(s) {
+    return '<button data-id="' + s.id + '"><span>' + (s.icon || '') + '</span>' + s.name + '</button>';
+  }).join("");
+  updateActive();
+}
+document.querySelector(".pc-nav").addEventListener("click", function(e) {
+  var btn = e.target.closest("button[data-id]");
+  if (btn) switchTab(btn.dataset.id);
+});
+document.querySelector(".mobile-nav").addEventListener("click", function(e) {
+  var btn = e.target.closest("button[data-id]");
+  if (btn) switchTab(btn.dataset.id);
+});
+function switchTab(id) {
+  cur = id;
+  yoPage = 1;
+  updateActive();
+  loadData(id);
+  history.replaceState(null, null, "#" + id);
+}
+window.addEventListener("hashchange", function() {
+  var hash = location.hash.slice(1);
+  if (hash && hash !== cur && cfg.sections && cfg.sections.some(function(s) { return s.id === hash; })) {
+    cur = hash;
+    updateActive();
+    loadData(cur);
+  }
+});
+function updateActive() {
+  document.querySelectorAll(".pc-nav button, .mobile-nav button").forEach(function(btn) {
+    btn.classList.toggle("active", btn.dataset.id === cur);
+  });
+  var mh = document.querySelector(".mobile-header");
+  if (mh) {
+    var sec = (cfg.sections || []).find(function(s) { return s.id === cur; });
+    mh.textContent = (sec && sec.name) || "";
+  }
+}
+function loadData(id) {
+  var area = document.querySelector(".content-area");
+  area.innerHTML = '<div class="loading">拉取数据中…</div>';
+  if (id === 'bi_occasionalrecordsoftheinkplough') {
+    if (yoCache.length) { renderYoList(); return; }
+    fetchWithTimeout("https://api.tianbin.org/api/bi_occasionalrecordsoftheinkplough.json?t=" + Date.now())
+      .then(function(r) { return r.json(); })
+      .then(function(j) {
+        yoCache = j;
+        yoCache.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+        renderYoList();
+      })
+      .catch(function() {
+        area.innerHTML = '<div class="err">数据加载失败，请检查网络后刷新页面</div>';
+      });
+    return;
+  }
+  if (data[id]) { renderList(data[id]); return; }
+  fetchWithTimeout("https://api.tianbin.org/api/" + id + ".json?t=" + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      data[id] = j;
+      renderList(j);
+    })
+    .catch(function() {
+      area.innerHTML = '<div class="err">数据加载失败，请检查网络后刷新页面</div>';
+    });
+}
+function renderYoList() {
+  var area = document.querySelector(".content-area");
+  var list = yoCache;
+  yoTotal = Math.max(1, Math.ceil(list.length / 5));
+  var html = '<div class="yo-search"><input id="yoKey" placeholder="请输入标题或日记ID" /><button id="yoSearchBtn">查询</button></div>';
+  var start = (yoPage - 1) * 5;
+  var end = Math.min(start + 5, list.length);
+  for (var i = start; i < end; i++) {
+    html += '<div class="list-item" data-idx="' + i + '"><div class="title">' + list[i].title + '</div><div class="meta">' + list[i].date + ' · ' + list[i].author + '</div></div>';
+  }
+  html += '<div class="pager"><button id="yoPrevBtn" ' + (yoPage <= 1 ? 'disabled' : '') + '>上一页</button><span style="line-height:36px;padding:0 10px">' + yoPage + ' / ' + yoTotal + '</span><button id="yoNextBtn" ' + (yoPage >= yoTotal ? 'disabled' : '') + '>下一页</button></div>';
+  area.innerHTML = html;
+}
+document.querySelector(".content-area").addEventListener("click", function(e) {
+  if (e.target.id === 'yoSearchBtn') { yoSearch(); return; }
+  if (e.target.id === 'yoPrevBtn') { yoPrev(); return; }
+  if (e.target.id === 'yoNextBtn') { yoNext(); return; }
+  var item = e.target.closest(".list-item[data-idx]");
+  if (item) { openModal(parseInt(item.dataset.idx, 10)); }
+});
+function yoSearch() {
+  var input = document.getElementById("yoKey");
+  if (!input) return;
+  var k = input.value.trim();
+  if (!k) { renderYoList(); return; }
+  var f = yoCache.filter(function(i) {
+    if (/^\d+$/.test(k)) return String(i.author) === k;
+    return i.title.indexOf(k) !== -1;
+  });
+  var area = document.querySelector(".content-area");
+  if (f.length) {
+    area.innerHTML = f.map(function(it) {
+      var idx = yoCache.indexOf(it);
+      return '<div class="list-item" data-idx="' + idx + '"><div class="title">' + it.title + '</div><div class="meta">' + it.date + ' · ' + it.author + '</div></div>';
+    }).join("") + '<div class="pager"><button onclick="loadData(\'bi_occasionalrecordsoftheinkplough\')">返回页</button></div>';
+  } else {
+    area.innerHTML = '<div class="err">该文学内容未上传!<br/>《天彬》框架设定：TIANBIN.NET</div><div class="pager"><button onclick="loadData(\'bi_occasionalrecordsoftheinkplough\')">返回页</button></div>';
+  }
+}
+function yoPrev() { if (yoPage > 1) { yoPage--; renderYoList(); } }
+function yoNext() { if (yoPage < yoTotal) { yoPage++; renderYoList(); } }
+function renderList(items) {
+  var area = document.querySelector(".content-area");
+  if (!items || !items.length) { area.innerHTML = '<div class="err">暂无数据</div>'; return; }
+  area.innerHTML = items.map(function(it, i) {
+    return '<div class="list-item" data-idx="' + i + '"><div class="title">' + it.title + '</div><div class="meta">' + it.date + ' · ' + it.author + '</div></div>';
+  }).join("");
+}
+function openModal(idx) {
+  var item;
+  if (cur === 'bi_occasionalrecordsoftheinkplough') {
+    item = yoCache[idx];
+  } else {
+    item = (data[cur] || [])[idx];
+  }
+  if (!item) { console.error('openModal: item not found at idx', idx); return; }
+  var body = document.getElementById("modalBody");
+  var titleEl = document.getElementById("modalTitle");
+  var html = '<div class="text">' + item.content.replace(/\n/g, "<br/>").replace(/\t([^\n]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>') + '</div>';
+  if (item.imgs && item.imgs.length) {
+    html += '<div class="img-grid">' + item.imgs.slice(0, 9).map(function(u) {
+      return '<img src="' + u + '" data-imgsrc="' + u + '" />';
+    }).join("") + '</div>';
+  }
+  if (item.html && item.html.trim() !== '') {
+    html += '<button type="button" class="show-html-btn" data-action="openHtml" data-idx="' + idx + '">立即阅读</button>';
+  }
+  body.innerHTML = html;
+  titleEl.textContent = item.title || "";
+  document.getElementById("modal").classList.add("active");
+}
+document.getElementById("modalBody").addEventListener("click", function(e) {
+  if (e.target.classList.contains("show-html-btn")) {
+    e.preventDefault();
+    e.stopPropagation();
+    var idx = parseInt(e.target.dataset.idx, 10);
+    console.log('[DEBUG] 立即阅读 clicked, idx=', idx); 
+    openHtmlModal(idx);
+    return;
+  }
+  if (e.target.tagName === 'IMG' && e.target.dataset.imgsrc) {
+    openImg(e.target.dataset.imgsrc);
+  }
+});
+function openHtmlModal(idx) {
+  console.log('[DEBUG] openHtmlModal called, idx=', idx, 'cur=', cur);
+  htmlCurrentIdx = idx;
+  var item;
+  if (cur === 'bi_occasionalrecordsoftheinkplough') {
+    item = yoCache[idx];
+  } else {
+    item = (data[cur] || [])[idx];
+  }
+  if (!item) { console.error('openHtmlModal: item not found'); alert('内容加载失败：item not found'); return; }
+  if (!item.html || !item.html.trim()) { console.error('openHtmlModal: html field empty'); alert('该文章暂无HTML内容'); return; }
+  htmlRetryCount = 0;
+  var modal = document.getElementById("htmlModal");
+  var body = document.getElementById("htmlModalBody");
+  var header = document.getElementById("htmlModalTitle");
+  header.textContent = item.title || "详细内容";
+  var raw = item.html.replace(/¥/g, '"');
+  currentRawHtml = raw;
+  var contentHtml = '';
+  if (/<iframe/i.test(raw)) {
+    contentHtml = raw.replace(/<iframe/i, '<iframe id="subIframe"').replace(/<\/iframe>/i, '</iframe>');
+    contentHtml = contentHtml.replace(/(src="[^"]*)"/, '$1?_=' + Date.now() + '"');
+  } else {
+    var encoded = raw.replace(/"/g, '&quot;').replace(/&/g, '&amp;');
+    contentHtml = '<iframe id="subIframe" srcdoc="' + encoded + '" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" style="width:100%;height:100%;border:none;display:block;"></iframe>';
+  }
+  contentHtml += '<button type="button" class="html-reload-btn" data-action="reloadFrame">↻</button>';
+  body.innerHTML = contentHtml;
+  try {
+    body.querySelectorAll('a').forEach(function(a) {
+      a.setAttribute('target', '_top');
+      a.setAttribute('rel', 'noopener noreferrer');
+    });
+    body.querySelectorAll('form').forEach(function(f) {
+      f.setAttribute('target', '_top');
+    });
+  } catch(e) {}
+  var iframe = document.getElementById('subIframe');
+  if (iframe) {
+    iframe.onload = function() { htmlRetryCount = 0; console.log('[DEBUG] iframe loaded ok'); };
+    iframe.onerror = function() { console.error('[DEBUG] iframe error'); subFrameRetry(); };
+  }
+  modal.classList.add("active");
+  console.log('[DEBUG] htmlModal activated');
+  subFrameRetry();
+}
+document.getElementById("htmlModalBody").addEventListener("click", function(e) {
+  if (e.target.dataset.action === 'reloadFrame') {
+    e.preventDefault();
+    reloadSubFrame();
+  }
+});
+function subFrameRetry() {
+  htmlRetryCount++;
+  var iframe = document.getElementById('subIframe');
+  if (!iframe) return;
+  if (htmlRetryCount > 3) {
+    console.warn('[DEBUG] iframe retry > 3, force reload');
+    try {
+      if (iframe.contentWindow && iframe.contentWindow.caches) {
+        iframe.contentWindow.caches.keys().then(function(names) {
+          names.forEach(function(n) { iframe.contentWindow.caches.delete(n); });
+        });
+      }
+    } catch(e) {}
+    var src = iframe.src;
+    iframe.src = '';
+    setTimeout(function() { iframe.src = src + (src.indexOf('?') >= 0 ? '&' : '?') + '_=' + Date.now(); }, 100);
+    htmlRetryCount = 0;
+    return;
+  }
+  console.log('[DEBUG] iframe retry #' + htmlRetryCount);
+  var src = iframe.src;
+  iframe.src = '';
+  setTimeout(function() {
+    iframe.src = src + (src.indexOf('?') >= 0 ? '&' : '?') + '_=' + Date.now();
+  }, 50);
+  if (htmlRetryTimer) clearTimeout(htmlRetryTimer);
+  htmlRetryTimer = setTimeout(subFrameRetry, 3000);
+}
+function reloadSubFrame() {
+  htmlRetryCount = 0;
+  var iframe = document.getElementById('subIframe');
+  if (!iframe) return;
+
+  if (iframe.hasAttribute('srcdoc')) {
+    iframe.setAttribute('srcdoc', currentRawHtml.replace(/"/g, '&quot;'));
+  } else {
+    var src = iframe.src;
+    iframe.src = '';
+    setTimeout(function() {
+      iframe.src = src + (src.indexOf('?') >= 0 ? '&' : '?') + '_=' + Date.now();
+    }, 50);
+  }
+  var btn = document.querySelector('.html-reload-btn');
+  if (btn) {
+    btn.style.transform = 'rotate(360deg)';
+    btn.style.transition = 'transform 0.5s';
+    setTimeout(function() { btn.style.transform = 'rotate(0deg)'; }, 500);
+  }
+}
+function openImg(u) {
+  var im = document.getElementById("imgModal");
+  document.getElementById("imgModalImg").src = u;
+  im.classList.add("active");
+}
+function closeModal(sel) {
+  var el = document.querySelector(sel);
+  if (el) el.classList.remove("active");
+  if (sel.indexOf('html-modal') >= 0) {
+    htmlRetryCount = 0;
+    if (htmlRetryTimer) { clearTimeout(htmlRetryTimer); htmlRetryTimer = null; }
+    var b = document.getElementById("htmlModalBody");
+    if (b) b.innerHTML = '';
+  }
+}
+document.getElementById('modalCloseBtn').addEventListener('click', function(e) {
+  e.preventDefault(); closeModal('.modal');
+});
+document.getElementById('htmlModalCloseBtn').addEventListener('click', function(e) {
+  e.preventDefault(); closeModal('.html-modal');
+});
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === e.currentTarget) closeModal('.modal');
+});
+document.getElementById('htmlModal').addEventListener('click', function(e) {
+  if (e.target === e.currentTarget) closeModal('.html-modal');
+});
+document.getElementById('imgModal').addEventListener('click', function(e) {
+  if (e.target === e.currentTarget || e.target.tagName === 'IMG') closeModal('.img-modal');
+});
+window.print = function() { window.location.href = "http://www.tianbin.net"; };
+Object.defineProperty(window, 'outerHeight', { get: function() { return window.innerHeight; } });
+Object.defineProperty(window, 'outerWidth', { get: function() { return window.innerWidth; } });
+loadConfig();
+</script>
+</body>
+</html>
