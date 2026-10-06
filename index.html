@@ -1,1 +1,101 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"><title>天彬TianBIN | 框架设定官网</title><meta name="description" content="不忘初心，逐梦未来。框架设定：TIANBIN.NET,志创旷世神作，玄幻科幻并峙，策略养成，二次元为皮。构思已备，恨无资斧践行。框架设定，并陈未铸。空怀奇想，怅望星河，惟叹奈何。剑鸣匣中谁识，待伯乐携金共铸，以竟此界。版权所有:苏天彬,本名李文飞,字天彬"><meta name="keywords" content="天彬,TianBIN,天彬TianBIN,不忘初心,逐梦未来,世界观,框架,设定,玄幻,科幻,二次元,游戏,小说,版权,李文飞,苏天彬"/><meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="./api/APlayer.min.css"><link rel="stylesheet" href="./api/index.css"></head><body><canvas id="watermark-canvas"></canvas><div id="app"><div class="mobile-header"></div><div class="content-area"></div><div class="mobile-nav"></div></div><div class="modal"><div class="modal-box"><div class="modal-header"><h3></h3><button type="button" class="modal-close" data-action="close-modal">×</button></div><div class="modal-body"></div><button type="button" class="copy-link-btn" data-action="copy-link">复制链接</button></div></div><div class="html-modal"><div class="html-modal-box"><div class="html-modal-header"><h3>立即了解…</h3><button type="button" class="html-modal-close" data-action="close-html">×</button></div><div class="html-modal-body"></div></div></div><div class="img-modal"><div class="img-container"><img><div class="img-watermark"><span></span></div><div class="img-hint">点击任意处关闭</div></div></div><div class="toast" id="toast"></div><div class="announcement-overlay" id="announcementOverlay"></div><div class="announcement-modal" id="announcementModal"><div class="announcement-box"><div class="announcement-header"><h3 id="announcementTitle">公告</h3></div><div class="announcement-body" id="announcementBody"></div><div class="announcement-footer"><button type="button" class="announcement-btn-detail" id="announcementDetailBtn">详细条款</button><button type="button" class="announcement-btn" id="announcementBtn" disabled>请阅读公告内容...</button></div></div></div><div class="announcement-detail-modal" id="announcementDetailModal"><div class="announcement-detail-box"><div class="announcement-detail-header"><h3>详细条款</h3><button type="button" class="announcement-detail-close" id="announcementDetailClose">×</button></div><div class="announcement-detail-body" id="announcementDetailBody"></div></div></div><script src="./api/APlayer.min.js"></script><script src="./api/Meting.min.js"></script><button type="button" class="music-float-btn" id="musicFloatBtn" style="display:none;">♪</button><div class="music-container" id="musicContainer"><div class="music-header" id="musicHeader"><span class="music-header-title" id="musicTitle">音乐播放器</span><button type="button" class="music-close-btn" id="musicCloseBtn">×</button></div><div class="music-body" id="musicBody"><div class="music-iframe-wrap" id="musicIframeWrap"></div><div class="music-lrc" id="musicLrc"><div class="music-lrc-tip" id="musicLrcTip">歌词加载中…</div></div></div><div class="music-controls"><button type="button" class="music-ctrl-btn" id="musicPrevBtn" title="上一曲">⏮</button><button type="button" class="music-ctrl-btn" id="musicPlayBtn" title="播放/暂停">▶</button><button type="button" class="music-ctrl-btn" id="musicStopBtn" title="停止">⏹</button><button type="button" class="music-ctrl-btn" id="musicNextBtn" title="下一曲">⏭</button><div class="music-track-info"><span class="music-track-name" id="musicTrackName">未播放</span></div><div class="music-vol-wrap"><span class="music-vol-icon">🔊</span><input type="range" class="music-vol-slider" id="musicVolSlider" min="0" max="100" value="35"></div></div></div><script src="./api/index.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>天彬TianBIN | 框架设定官网</title>
+   <meta name="description" content="不忘初心，逐梦未来。框架设定：TIANBIN.NET,志创旷世神作，玄幻科幻并峙，策略养成，二次元为皮。构思已备，恨无资斧践行。框架设定，并陈未铸。空怀奇想，怅望星河，惟叹奈何。剑鸣匣中谁识，待伯乐携金共铸，以竟此界。版权所有:苏天彬,本名李文飞,字天彬">
+    <meta name="keywords" content="天彬,TianBIN,天彬TianBIN,不忘初心,逐梦未来,世界观,框架,设定,玄幻,科幻,二次元,游戏,小说,版权,李文飞,苏天彬"/>
+     <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="./api/APlayer.min.css">
+   <link rel="stylesheet" href="./api/index.css">
+  </head>
+ <body>
+<canvas id="watermark-canvas"></canvas>
+ <div id="app">
+  <div class="mobile-header"></div>
+   <div class="content-area"></div>
+    <div class="mobile-nav"></div>
+     </div>
+    <div class="modal">
+   <div class="modal-box">
+  <div class="modal-header">
+ <h3></h3>
+<button type="button" class="modal-close" data-action="close-modal">×</button>
+ </div>
+  <div class="modal-body"></div>
+   <button type="button" class="copy-link-btn" data-action="copy-link">复制链接</button>
+  </div>
+ </div>
+<div class="html-modal">
+ <div class="html-modal-box">
+  <div class="html-modal-header">
+   <h3>立即了解…</h3>
+  <button type="button" class="html-modal-close" data-action="close-html">×</button>
+ </div>
+<div class="html-modal-body"></div>
+</div>
+ </div>
+  <div class="img-modal">
+   <div class="img-container">
+    <img>
+     <div class="img-watermark">
+    <span></span>
+   </div>
+  <div class="img-hint">点击任意处关闭</div>
+ </div>
+</div>
+ <div class="toast" id="toast"></div>
+  <div class="announcement-overlay" id="announcementOverlay"></div>
+   <div class="announcement-modal" id="announcementModal">
+    <div class="announcement-box">
+   <div class="announcement-header">
+  <h3 id="announcementTitle">公告</h3>
+ </div>
+<div class="announcement-body" id="announcementBody"></div>
+ <div class="announcement-footer">
+  <button type="button" class="announcement-btn-detail" id="announcementDetailBtn">详细条款</button>
+   <button type="button" class="announcement-btn" id="announcementBtn" disabled>请阅读公告内容...</button>
+    </div>
+   </div>
+  </div>
+ <div class="announcement-detail-modal" id="announcementDetailModal">
+<div class="announcement-detail-box">
+ <div class="announcement-detail-header">
+  <h3>详细条款</h3>
+ <button type="button" class="announcement-detail-close" id="announcementDetailClose">×</button>
+</div>
+ <div class="announcement-detail-body" id="announcementDetailBody"></div>
+  </div>
+   </div>
+    <script src="./api/APlayer.min.js"></script>
+     <script src="./api/Meting.min.js"></script>
+   <button type="button" class="music-float-btn" id="musicFloatBtn" style="display:none;">♪</button>
+  <div class="music-container" id="musicContainer">
+   <div class="music-header" id="musicHeader">
+    <span class="music-header-title" id="musicTitle">音乐播放器</span>
+     <button type="button" class="music-close-btn" id="musicCloseBtn">×</button>
+    </div>
+   <div class="music-body" id="musicBody">
+  <div class="music-iframe-wrap" id="musicIframeWrap"></div>
+ <div class="music-lrc" id="musicLrc">
+<div class="music-lrc-tip" id="musicLrcTip">歌词加载中…</div>
+</div>
+ </div>
+  <div class="music-controls">
+   <button type="button" class="music-ctrl-btn" id="musicPrevBtn" title="上一曲">⏮</button>
+  <button type="button" class="music-ctrl-btn" id="musicPlayBtn" title="播放/暂停">▶</button>
+   <button type="button" class="music-ctrl-btn" id="musicStopBtn" title="停止">⏹</button>
+  <button type="button" class="music-ctrl-btn" id="musicNextBtn" title="下一曲">⏭</button>
+ <div class="music-track-info">
+<span class="music-track-name" id="musicTrackName">未播放</span>
+</div>
+ <div class="music-vol-wrap">
+  <span class="music-vol-icon">🔊</span>
+   <input type="range" class="music-vol-slider" id="musicVolSlider" min="0" max="100" value="35">
+    </div>
+   </div>
+  </div>
+ <script src="./api/index.js"></script>
+</body>
+</html>
