@@ -185,6 +185,18 @@ document.addEventListener('click',function(e){
         }
         target=target.parentNode;
     }
+    var _0xClModal=document.querySelector('.img-modal.active');
+    if(_0xClModal&&(e.target===_0xClModal||_0xClModal.contains(e.target))){
+        _0xF2B('.img-modal');
+    }
+});
+document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'||e.keyCode===27){
+        var _0xIm=document.querySelector('.img-modal');
+        if(_0xIm&&_0xIm.classList.contains('active')){
+            _0xF2B('.img-modal');
+        }
+    }
 });
 _0xF1D();
 })();
