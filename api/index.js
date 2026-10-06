@@ -163,4 +163,20 @@ document.addEventListener('click',function(e){
     }
 });
 _0xF1D();
+(function(){
+    var modal=document.querySelector('.img-modal');
+    if(!modal)return;
+    modal.addEventListener('click',function(){
+        if(modal.classList.contains('active')){
+            modal.classList.remove('active');
+            document.body.style.overflow='';
+        }
+    });
+    window.openImgModal=function(src){
+        var img=modal.querySelector('img');
+        if(img)img.src=src;
+        modal.classList.add('active');
+        document.body.style.overflow='hidden';
+    };
+})();
 })();
