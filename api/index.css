@@ -380,7 +380,8 @@ object-fit: cover;
 cursor: pointer;
 display: block;
 border: 1px solid var(--border);
-transition: var(--transition-fast)
+transition: var(--transition-fast);
+pointer-events: auto
 }
 .img-grid img:active {
 transform: scale(0.97)
@@ -457,12 +458,6 @@ position: relative
 }
 .html-modal-body * {
 user-select: text!important
-}
-.html-modal-body,.html-modal,.html-modal-box {
--webkit-user-select: text!important
-}
-.html-modal,.html-modal-box {
--webkit-touch-callout: default!important
 }
 .html-modal-body iframe {
 width: 100%;
@@ -1093,7 +1088,7 @@ display: none
 .music-lrc .aplayer-lrc:before {
 display: none
 }
-.music-lrc .aplayer-lrc p {
+.music-lrc p {
 font-size: 12px;
 color: var(--text-secondary);
 line-height: 23px!important;
@@ -1107,7 +1102,7 @@ white-space: nowrap;
 text-overflow: ellipsis;
 text-shadow: -1px -1px 0 var(--bg),1px -1px 0 var(--bg),-1px 1px 0 var(--bg),1px 1px 0 var(--bg)
 }
-.music-lrc .aplayer-lrc p.aplayer-lrc-current {
+.music-lrc p.aplayer-lrc-current {
 opacity: 1;
 overflow: visible;
 height: auto!important;
@@ -1116,7 +1111,7 @@ color: var(--primary);
 font-weight: 700;
 font-size: 13px
 }
-.music-lrc .aplayer-lrc .aplayer-lrc-contents {
+.music-lrc .aplayer-lrc-contents {
 width: 100%;
 transition: all .5s ease-out
 }
@@ -1243,12 +1238,6 @@ width: calc(100vw - 40px);
 right: 20px;
 left: 20px;
 height: 500px
-}
-.music-float-btn {
-bottom: 70px;
-right: 15px
-}
-}t: 500px
 }
 .music-float-btn {
 bottom: 70px;
