@@ -458,6 +458,12 @@ position: relative
 .html-modal-body * {
 user-select: text!important
 }
+.html-modal-body,.html-modal,.html-modal-box {
+-webkit-user-select: text!important
+}
+.html-modal,.html-modal-box {
+-webkit-touch-callout: default!important
+}
 .html-modal-body iframe {
 width: 100%;
 height: 100%;
