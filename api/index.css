@@ -503,7 +503,7 @@ box-shadow: 0 6px 20px var(--shadow-primary)
 }
 .show-html-btn:active {transform: scale(0.96)}
 .copy-link-btn {
-display: block!important;
+display: none!important;
 margin: 0 auto 18px;
 padding: 12px 0;
 width: 60%;
@@ -525,6 +525,15 @@ box-shadow: 0 4px 14px var(--shadow-primary)
 box-shadow: 0 6px 20px var(--shadow-primary)
 }
 .copy-link-btn:active {transform: scale(0.96)}
+.copy-link-btn.show {
+display: block!important
+}
+.html-guard-layer {
+position: absolute;
+inset: 0;
+z-index: 5;
+background: transparent
+}
 .img-modal {
 position: fixed;
 inset: 0;
