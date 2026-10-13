@@ -137,7 +137,7 @@ function _0xF24(_0xId){var _0xWrap=((_0xB4[_0xId]||[]).slice()).map(function(_0x
 function _0xF25(){var _0xPs=_0xF10(_0xB2);var _0xList=_0xPs.filtered||_0xPs.list;if(!_0xList||_0xList.length===0){if(_0xF0F(_0xB2)&&_0xB5.searchQuery&&/^\d+$/.test(_0xB5.searchQuery)){renderNotFound(_0xB2,_0xB5.searchQuery);return;}_0xF01('.content-area').innerHTML='<div class="loading" style="color:var(--text-tertiary)">暂无内容</div>';return;}var _0xPerPage=_0xF09(_0xB2);_0xPs.total=Math.max(1,Math.ceil(_0xList.length/_0xPerPage));if(_0xPs.page>_0xPs.total)_0xPs.page=_0xPs.total;if(_0xPs.page<1)_0xPs.page=1;var _0xArea=_0xF01('.content-area');var _0xHtml='';var _0xIsOp=_0xF0F(_0xB2);if(_0xF0A(_0xB2)){
 
 _0xHtml+='<div class="section-search active">';
-_0xHtml+='<input id="secKey" placeholder="'+( _0xIsOp?'输入数字ID查询':'输入关键词查询')+'" value="'+_0xF00(_0xB5.searchQuery)+'">';
+_0xHtml+='<input id="secKey" placeholder="'+( _0xIsOp?'输入数字ID或关键词查询':'输入关键词查询')+'" value="'+_0xF00(_0xB5.searchQuery)+'">';
 _0xHtml+='<button type="button" data-action="search">查询</button>';
 if(_0xB5.searchQuery){_0xHtml+='<button type="button" data-action="back-search" style="padding:12px 18px;background:var(--border-light);color:var(--text);border:none;border-radius:var(--radius-sm);cursor:pointer;font-size:14px;font-weight:600;">返回</button>';}_0xHtml+='<div class="search-history" id="searchHistory"></div>';_0xHtml+='</div>';}var _0xStart=(_0xPs.page-1)*_0xPerPage,_0xEnd=Math.min(_0xStart+_0xPerPage,_0xList.length);for(var i=_0xStart;i<_0xEnd;i++){var _0xItem=_0xList[i];if(!_0xItem)continue;
 
