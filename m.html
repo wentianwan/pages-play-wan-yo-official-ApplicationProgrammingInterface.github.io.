@@ -188,7 +188,7 @@ function fetchWithTimeout(url, timeout) {
   ]);
 }
 function loadConfig() {
-  fetchWithTimeout("https://api.tianbin.org/api/bi.json?t=" + Date.now(), 8000)
+  fetchWithTimeout("https://api.tianbin.org/cdn/bi.json?t=" + Date.now(), 8000)
     .then(function(r) { return r.json(); })
     .then(function(j) {
       cfg = j;
@@ -218,7 +218,7 @@ function preloadAll() {
   if (!cfg.sections) return;
   cfg.sections.forEach(function(s) {
     if (s.id === 'bi_occasionalrecordsoftheinkplough') {
-      fetchWithTimeout("https://api.tianbin.org/api/bi_occasionalrecordsoftheinkplough.json?t=" + Date.now())
+      fetchWithTimeout("https://api.tianbin.org/cdn/bi_occasionalrecordsoftheinkplough.json?t=" + Date.now())
         .then(function(r) { return r.json(); })
         .then(function(j) {
           yoCache = j;
@@ -227,7 +227,7 @@ function preloadAll() {
         })
         .catch(function() {});
     } else {
-      fetchWithTimeout("https://api.tianbin.org/api/" + s.id + ".json?t=" + Date.now())
+      fetchWithTimeout("https://api.tianbin.org/cdn/" + s.id + ".json?t=" + Date.now())
         .then(function(r) { return r.json(); })
         .then(function(j) {
           data[s.id] = j;
@@ -287,7 +287,7 @@ function loadData(id) {
   area.innerHTML = '<div class="loading">拉取数据中…</div>';
   if (id === 'bi_occasionalrecordsoftheinkplough') {
     if (yoCache.length) { renderYoList(); return; }
-    fetchWithTimeout("https://api.tianbin.org/api/bi_occasionalrecordsoftheinkplough.json?t=" + Date.now())
+    fetchWithTimeout("https://api.tianbin.org/cdn/bi_occasionalrecordsoftheinkplough.json?t=" + Date.now())
       .then(function(r) { return r.json(); })
       .then(function(j) {
         yoCache = j;
@@ -300,7 +300,7 @@ function loadData(id) {
     return;
   }
   if (data[id]) { renderList(data[id]); return; }
-  fetchWithTimeout("https://api.tianbin.org/api/" + id + ".json?t=" + Date.now())
+  fetchWithTimeout("https://api.tianbin.org/cdn/" + id + ".json?t=" + Date.now())
     .then(function(r) { return r.json(); })
     .then(function(j) {
       data[id] = j;
